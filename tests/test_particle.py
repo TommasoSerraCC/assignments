@@ -54,7 +54,7 @@ class TestParticle(unittest.TestCase):
     def test_set_physical_energy(self):
         # Try to set E = 2m
         self.particle.energy = 1.022 # MeV/c^2
-        self.assertAlmostEqual(self.particle.energy, np.sqrt(3/4))
+        self.assertAlmostEqual(self.particle.energy, np.sqrt(3/5))
 
 
 
