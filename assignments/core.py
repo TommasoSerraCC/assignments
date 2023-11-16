@@ -42,8 +42,7 @@ class Particle:
 
     @property
     def mass(self):
-        """ Return the mass of the particle
-        """
+        """ Return the mass of the particle """
         return self._mass
 
     @property
@@ -53,14 +52,12 @@ class Particle:
 
     @property
     def name(self):
-        """ Return the name of the particle
-        """
+        """ Return the name of the particle """
         return self._name
 
     @property
     def beta(self):
-        """ Return the beta parameter of the particle
-        """
+        """ Return the beta parameter of the particle """
         return self._beta
 
 
@@ -89,8 +86,7 @@ class Particle:
 
     @property
     def energy(self):
-        """ Return the energy of the particle
-        """
+        """ Return the energy of the particle """
         return self.mass*LIGHT_SPEED* math.sqrt(1/(1 + self.beta**2))
 
     @energy.setter
@@ -110,8 +106,7 @@ class Particle:
 
     @property
     def momentum(self):
-        """ Return the momentum of the particle
-        """
+        """ Return the momentum of the particle """
         return (self.mass*self.beta*math.sqrt(1/(1+self.beta**2)))
 
     @momentum.setter
