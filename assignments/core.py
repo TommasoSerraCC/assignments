@@ -8,7 +8,6 @@
 import math
 from loguru import logger
 
-LIGHT_SPEED=1
 
 class Particle:
     """ Class describing a generic Particle
@@ -24,7 +23,6 @@ class Particle:
         - beta: float
             Relativistic beta parameter (default value=0)
     """
-
     # Initialing the constructor
     def __init__(self, mass, charge, name, beta=0.):
         """ Constructor
@@ -87,7 +85,7 @@ class Particle:
     @property
     def energy(self):
         """ Return the energy of the particle """
-        return self.mass*LIGHT_SPEED* math.sqrt(1/(1 + self.beta**2))
+        return self.mass * math.sqrt(1/(1 - self.beta**2))
 
     @energy.setter
     def energy(self, value):
@@ -102,12 +100,12 @@ class Particle:
         if value < self.mass:
             logger.warning('Energy should be greater than mass = {}.'.format(self.mass))
             return
-        self.beta = math.sqrt(1 - ((self.mass**2 * LIGHT_SPEED**4) / value**2))
+        self.beta = math.sqrt(1 - (self.mass**2 / value**2))
 
     @property
     def momentum(self):
         """ Return the momentum of the particle """
-        return (self.mass*self.beta*math.sqrt(1/(1+self.beta**2)))
+        return (self.mass*self.beta*math.sqrt(1/(1 - self.beta**2)))
 
     @momentum.setter
     def momentum(self, value):
@@ -122,7 +120,7 @@ class Particle:
         if value < 0:
             logger.warning('Momentum must be greater than 0')
             return
-        self.beta = value/(math.sqrt(value*2 + self.mass*2))
+        self.beta = value / (math.sqrt(value**2 + self.mass**2))
 
 
 class Alpha(Particle):
@@ -137,7 +135,7 @@ class Alpha(Particle):
     # Defining the specifics of an alpha particle as class attributes.
     # When an instance of 'Alpha' is created they are not required as input
     MASS = 3727.3
-    CHARGE = 2
+    CHARGE = 4
     NAME = 'Alpha'
     def __init__(self, beta=0.):
         super().__init__(self.MASS, self.CHARGE, self.NAME, beta)
